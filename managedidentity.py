@@ -2,7 +2,7 @@ from azure.keyvault.secrets import SecretClient
 from azure.mgmt.authorization import AuthorizationManagementClient
 from azure.mgmt.authorization.models import RoleAssignmentCreateParameters, RoleDefinition
 from azure.mgmt.compute import ComputeManagementClient
-from azure.mgmt.mysql import MySQLManagementClient
+# from azure.mgmt.mysql import MySQLManagementClient
 from azure.identity import DefaultAzureCredential
 
 # Define your Azure subscription ID and resource group and names
@@ -11,7 +11,7 @@ resource_group_name = "Marketplace"
 identity_name = "gtgidentity"
 app_server_name = "gtgapp"
 key_vault_name = "gtgkeyvault2"
-mysql_server_name = "gtgmysql2"
+# mysql_server_name = "gtgmysql2"
 
 # Initialize Azure credentials
 credential = DefaultAzureCredential()
@@ -41,11 +41,11 @@ role_assignment_key_vault = RoleAssignmentCreateParameters(
 authorization_client.role_assignments.create(key_vault_scope, uuid.uuid4(), role_assignment_key_vault)
 
 # Assign permissions to MySQL Server (gtgmysql)
-mysql_scope = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.DBforMySQL/servers/{mysql_server_name}"
-role_assignment_mysql = RoleAssignmentCreateParameters(
-    role_definition_id="/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",  # Reader Role ID
-    principal_id=identity.principal_id,
-)
-authorization_client.role_assignments.create(mysql_scope, uuid.uuid4(), role_assignment_mysql)
+# mysql_scope = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.DBforMySQL/servers/{mysql_server_name}"
+# role_assignment_mysql = RoleAssignmentCreateParameters(
+#    role_definition_id="/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",  # Reader Role ID
+#    principal_id=identity.principal_id,
+# )
+# authorization_client.role_assignments.create(mysql_scope, uuid.uuid4(), role_assignment_mysql)
 
 print(f"Managed Identity '{identity_name}' created and assigned to '{app_server_name}' with permissions to Key Vault and MySQL Server.")
