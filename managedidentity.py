@@ -7,12 +7,12 @@ from azure.mgmt.mysql import MySQLManagementClient
 from azure.identity import DefaultAzureCredential
 
 # Define your Azure subscription ID and resource group and names
-subscription_id = "YOUR_SUBSCRIPTION_ID"
-resource_group_name = "gtg"
+subscription_id = "4a11049c-f1ef-4b33-8fdc-000845f3b37c"
+resource_group_name = "Marketplace"
 identity_name = "gtgidentity"
-app_server_name = "gtgappserver"
-key_vault_name = "gtgkeyvault"
-mysql_server_name = "gtgmysql"
+app_server_name = "gtgapp"
+key_vault_name = "gtgkeyvault2"
+mysql_server_name = "gtgmysql2"
 
 # Initialize Azure credentials
 credential = DefaultAzureCredential()
