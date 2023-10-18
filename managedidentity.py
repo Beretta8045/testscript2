@@ -17,7 +17,8 @@ key_vault_name = "gtgkeyvault2"
 credential = DefaultAzureCredential()
 
 # Create Managed Identity
-identity_client = ManagedIdentityClient(credential)
+credential = ManagedIdentityClient()
+identity_client = credential
 identity = identity_client.create_managed_identity(resource_group_name, identity_name)
 
 # Assign the Managed Identity to the App Service (gtgappserver)
