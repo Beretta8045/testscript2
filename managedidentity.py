@@ -34,7 +34,7 @@ compute_client.virtual_machines.create_or_update(resource_group_name, app_server
 authorization_client = AuthorizationManagementClient(credential, subscription_id)
 
 # Assign permissions to Key Vault (gtgkeyvault)
-key_vault_scope = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.KeyVault/vaults/{key_vault_name}"
+key_vault_scope = "/subscriptions/" + subscription_id + "/resourceGroups/" + resource_group_name + "/providers/Microsoft.KeyVault/vaults/" + key_vault_name
 
 role_assignment_key_vault = RoleAssignmentCreateParameters(
     role_definition_id="/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",  # Reader Role ID
