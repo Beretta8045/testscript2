@@ -15,7 +15,10 @@ compute_client = ComputeManagementClient(credential, subscription_id)
 resource_client = ResourceManagementClient(credential, subscription_id)
 
 # Get the identity's client ID
-identity = resource_client.resources.get(resource_group_name, 'Microsoft.ManagedIdentity/userAssignedIdentities', identity_name)
+identity = resource_client.resources.get_by_id(
+    f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identity_name}",
+    "2020-06-01"  # Use the appropriate API version for your environment
+)
 identity_client_id = identity.properties['clientId']
 
 # Get the existing VM
@@ -28,5 +31,5 @@ vm.identity = VirtualMachineIdentity(
 )
 
 # Update the VM with the managed identity
-compute_client.virtual_machines.begin_create_or_update(resource_group_name, vm_name, vm)
+compute_client.virtual_machines.create_or_update(resource_group_name, vm_name, vm)
 print(f"Managed identity '{identity_name}' assigned to Virtual Machine '{vm_name}'")
