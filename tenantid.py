@@ -32,6 +32,6 @@ try:
     # Store the Tenant Name in the Key Vault as a secret
     secret_name = "azure-ad-tenant-name"  # Name for the secret
     secret_client.set_secret(secret_name, tenant_name)
-    print(f"Tenant Name stored in Key Vault as secret: {secret_name}")
+    print("Tenant Name stored in Key Vault as secret: {}".format(secret_name))
 except KeyError:
     print("Azure AD Tenant Name is not available in the environment variables.")
