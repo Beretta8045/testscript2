@@ -6,7 +6,7 @@ from jwt import decode
 subscription_id = '4a11049c-f1ef-4b33-8fdc-000845f3b37c'  
 resource_group_name = 'Marketplaceoffer'  
 key_vault_name = 'gtgkeyvault2'  
-secret_name = 'TENANT_ID_SECRET_NAME'  
+secret_name = 'MyTenantID'  # Replace with a valid secret name
 
 # Create a DefaultAzureCredential object  
 credential = DefaultAzureCredential()  
