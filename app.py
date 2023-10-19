@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from passlib.hash import sha256_crypt
-import psycopg2
 import random
 import string
 import secrets
+import mysql.connector
 
 app = Flask(__name)
 app.secret_key = secrets.token_hex(32)  # Set a secret key for session management
@@ -12,13 +12,12 @@ app.secret_key = secrets.token_hex(32)  # Set a secret key for session managemen
 def is_logged_in():
     return 'logged_in' in session
 
-# Database configuration (replace with your database details)
+# Database configuration (replace with your MySQL database details)
 db_config = {
+    'host': 'your_mysql_host',
+    'user': 'your_mysql_user',
+    'password': 'your_mysql_password',
     'database': 'your_database',
-    'user': 'your_user',
-    'password': 'your_password',
-    'host': 'your_database_host',
-    'port': 'your_database_port'
 }
 
 # License Key Generation
@@ -38,7 +37,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        connection = psycopg2.connect(**db_config)
+        connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
         cursor.execute("SELECT password FROM users WHERE username = %s", (username,))
         user_data = cursor.fetchone()
@@ -64,7 +63,7 @@ def index():
             # Generate and store the license key
             license_key = generate_license_key()
             
-            connection = psycopg2.connect(**db_config)
+            connection = mysql.connector.connect(**db_config)
             cursor = connection.cursor()
             cursor.execute("INSERT INTO licenses (license_key) VALUES (%s)", (license_key,))
             connection.commit()
@@ -78,4 +77,3 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
-
