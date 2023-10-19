@@ -21,7 +21,7 @@ credential = ManagedIdentityClient()
 identity_client = credential
 identity = identity_client.create_managed_identity(resource_group_name, identity_name)
 
-# Assign the Managed Identity to the App Service (gtgappserver)
+# Assign the Managed Identity to the App Service (gtgapp)
 compute_client = ComputeManagementClient(credential, subscription_id)
 app_server = compute_client.virtual_machines.get(resource_group_name, app_server_name)
 
@@ -35,6 +35,7 @@ authorization_client = AuthorizationManagementClient(credential, subscription_id
 
 # Assign permissions to Key Vault (gtgkeyvault)
 key_vault_scope = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.KeyVault/vaults/{key_vault_name}"
+
 role_assignment_key_vault = RoleAssignmentCreateParameters(
     role_definition_id="/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",  # Reader Role ID
     principal_id=identity.principal_id,
