@@ -7,14 +7,6 @@ resource_group_name = 'Marketplaceoffer'
 key_vault_name = 'gtgkeyvault2'  
 secret_name = 'TENANT_ID_SECRET_NAME'  
   
-from azure.identity import ManagedIdentityCredential  
-from azure.keyvault.secrets import SecretClient  
-  
-# Set your Azure resource group name, Key Vault name, and secret name  
-resource_group_name = 'your_resource_group_name'  
-key_vault_name = 'your_key_vault_name'  
-secret_name = 'your_secret_name'  
-  
 # Create a ManagedIdentityCredential object  
 credential = ManagedIdentityCredential()  
   
