@@ -42,9 +42,9 @@ keyvault_client.role_assignments.create(
 scope = "/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{}".format(subscription_id, resource_group_name, managed_identity_name)  
 keyvault_client.role_assignments.create(  
     scope=scope,  
-    role_definition_name="8e3af657-a8ff-443c-a75c-2fe8c4bcb635",  
-    principal_id=identity.principal_id  
-)  
+    role_definition_id=f"/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",  
+    principal_id=identity.principal_id
+)
   
 # Register Azure AD app  
 app = authorization_client.create_application(resource_group_name, aad_app_name)  
