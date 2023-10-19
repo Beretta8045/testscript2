@@ -7,11 +7,12 @@ resource_group_name = 'Marketplaceoffer'
 key_vault_name = 'gtgkeyvault2'  
 secret_name = 'TENANT_ID_SECRET_NAME'  
   
-# Create a ManagedIdentityCredential object  
-credential = ManagedIdentityCredential()  
+# Create a DefaultAzureCredential object  
+credential = DefaultAzureCredential()  
   
-# Retrieve the Azure Tenant ID using the ManagedIdentityCredential  
-tenant_id = credential.get_token("https://management.azure.com/.default").tenant_id  
+# Retrieve the Azure Tenant ID  
+token = credential.get_token("https://management.azure.com/.default")  
+tenant_id = token.token.get('tid')  
   
 # Create a SecretClient object  
 secret_client = SecretClient(vault_url=f"https://{key_vault_name}.vault.azure.net", credential=credential)  
