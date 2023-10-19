@@ -1,6 +1,6 @@
 from azure.identity import DefaultAzureCredential  
 from azure.keyvault.secrets import SecretClient  
-  
+
 # Set your Azure subscription ID, resource group name, Key Vault name, and secret name  
 subscription_id = '4a11049c-f1ef-4b33-8fdc-000845f3b37c'  
 resource_group_name = 'Marketplaceoffer'  
@@ -9,15 +9,15 @@ secret_name = 'TENANT_ID_SECRET_NAME'
 
 # Create a DefaultAzureCredential object  
 credential = DefaultAzureCredential()  
-  
+
 # Retrieve the Azure Tenant ID  
-token = credential.get_token("https://management.azure.com/.default")  
-tenant_id = token.token.get('tenant_id')  
-  
+token = credential.get_token("https://management.azure.com/.default")
+tenant_id = token.tenant_id  # Access tenant_id directly
+
 # Create a SecretClient object  
 secret_client = SecretClient(vault_url=f"https://{key_vault_name}.vault.azure.net", credential=credential)  
-  
+
 # Store the Tenant ID in the Key Vault as a secret  
 secret_client.set_secret(secret_name, tenant_id)  
-  
-print(f"Azure Tenant ID '{tenant_id}' stored in Key Vault '{key_vault_name}' as secret '{secret_name}'")  
+
+print(f"Azure Tenant ID '{tenant_id}' stored in Key Vault '{key_vault_name}' as secret '{secret_name}'")
