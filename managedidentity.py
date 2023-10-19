@@ -50,4 +50,5 @@ authorization_client.role_assignments.create(key_vault_scope, uuid.uuid4(), role
 # )
 # authorization_client.role_assignments.create(mysql_scope, uuid.uuid4(), role_assignment_mysql)
 
-print(f"Managed Identity '{identity_name}' created and assigned to '{app_server_name}' with permissions to Key Vault and MySQL Server.")
+print("Managed Identity '{}' created and assigned to '{}' with permissions to Key Vault and MySQL Server.".format(identity_name, app_server_name))
+
