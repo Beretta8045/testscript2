@@ -1,3 +1,5 @@
+import warnings  
+warnings.filterwarnings("ignore", category=DeprecationWarning)  
 from azure.identity import DefaultAzureCredential  
 from azure.mgmt.authorization import AuthorizationManagementClient  
 from azure.mgmt.keyvault import KeyVaultManagementClient  
