@@ -16,7 +16,7 @@ secret_client = SecretClient(vault_url=KEY_VAULT_URL, credential=credential)
 # Capture the Azure AD Tenant ID for the current subscription
 try:
     tenant_id = os.environ["AZURE_TENANT_ID"]
-    print("Captured Azure AD Tenant ID: {}".format(tenant_id))
+    print("Captured Azure AD Tenant ID: %s" % tenant_id)
 
     # Store the Tenant ID in the Key Vault as a secret
     secret_client.set_secret(TENANT_ID_SECRET_NAME, tenant_id)
