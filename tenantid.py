@@ -12,7 +12,7 @@ credential = DefaultAzureCredential()
   
 # Retrieve the Azure Tenant ID  
 token = credential.get_token("https://management.azure.com/.default")  
-tenant_id = token.tenant_id  
+tenant_id = token.token.get('tenant_id')  
   
 # Create a SecretClient object  
 secret_client = SecretClient(vault_url=f"https://{key_vault_name}.vault.azure.net", credential=credential)  
