@@ -5,7 +5,7 @@ import os
 
 # Define the Key Vault URL and the name for the secret that will store the tenant ID
 TENANT_ID_SECRET_NAME = "azure-ad-tenant-id"
-VAULT_URL = os.environ["https://gtgkeyvault1.vault.azure.net"]
+VAULT_URL = os.environ["https://gtgkeyvault2.vault.azure.net"]
 credential = DefaultAzureCredential()
 secret_client = SecretClient(vault_url="https://gtgkeyvault1.vault.azure.net", credential=credential)
 secret = secret_client.set_secret("secret-name", "secret-value")
