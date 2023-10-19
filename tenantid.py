@@ -1,5 +1,6 @@
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
+import os
 
 
 # Define the Key Vault URL and the name for the secret that will store the tenant ID
