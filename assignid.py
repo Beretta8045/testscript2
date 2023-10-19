@@ -14,33 +14,19 @@ credential = DefaultAzureCredential()
 compute_client = ComputeManagementClient(credential, subscription_id)
 resource_client = ResourceManagementClient(credential, subscription_id)
 
-# Create or update the user-defined identity
-resource_client.resources.begin_create_or_update(
-    resource_group_name,
-    'Microsoft.ManagedIdentity/userAssignedIdentities',
-    identity_name,
-    {
-        'location': 'eastus'  # Update with your desired location
-    }
-).result()
-
 # Get the identity's client ID
 identity = resource_client.resources.get(resource_group_name, 'Microsoft.ManagedIdentity/userAssignedIdentities', identity_name)
 identity_client_id = identity.properties['clientId']
 
-# Create a Virtual Machine with the assigned managed identity
-vm = VirtualMachine(
-    location='eastus',  # Update with your desired location
-    identity=VirtualMachineIdentity(type='UserAssigned', user_assigned_identities={identity_client_id: {}}),
-    os_profile={
-        'computer_name': vm_name,
-        'admin_username': 'youradminuser',  # Update with your desired admin username
-        'admin_password': 'youradminpassword'  # Update with your desired admin password
-    },
-    hardware_profile={
-        'vm_size': 'Standard_DS2_v2'  # Update with your desired VM size
-    }
+# Get the existing VM
+vm = compute_client.virtual_machines.get(resource_group_name, vm_name)
+
+# Update the VM's identity to include the managed identity
+vm.identity = VirtualMachineIdentity(
+    type='UserAssigned',
+    user_assigned_identities={identity_client_id: {}}
 )
 
-compute_client.virtual_machines.create_or_update(resource_group_name, vm_name, vm)
-print(f"Virtual Machine '{vm_name}' created with managed identity '{identity_name}'")
+# Update the VM with the managed identity
+compute_client.virtual_machines.begin_create_or_update(resource_group_name, vm_name, vm)
+print(f"Managed identity '{identity_name}' assigned to Virtual Machine '{vm_name}'")
