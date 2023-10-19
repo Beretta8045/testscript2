@@ -27,7 +27,7 @@ except KeyError:
 # Capture the Azure AD Tenant Name for the current subscription
 try:
     tenant_name = os.environ["AZURE_AD_TENANT_NAME"]
-    print(f"Captured Azure AD Tenant Name: {tenant_name}")
+    print("Captured Azure AD Tenant Name: %s" % tenant_name)
 
     # Store the Tenant Name in the Key Vault as a secret
     secret_name = "azure-ad-tenant-name"  # Name for the secret
