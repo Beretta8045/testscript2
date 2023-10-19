@@ -5,7 +5,7 @@ import random
 import string
 
 app = Flask(__name)
-app.secret_key = 'your_secret_key'  # Set a secret key for session management
+app.secret_key = secrets.token_hex(32)
 
 # ... (previous code for the Flask app)
 
