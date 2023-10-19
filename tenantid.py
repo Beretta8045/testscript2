@@ -20,7 +20,7 @@ try:
 
     # Store the Tenant ID in the Key Vault as a secret
     secret_client.set_secret(TENANT_ID_SECRET_NAME, tenant_id)
-    print(f"Tenant ID stored in Key Vault as secret: {TENANT_ID_SECRET_NAME}")
+    print("Tenant ID stored in Key Vault as secret: {}".format(TENANT_ID_SECRET_NAME))
 except KeyError:
     print("Azure AD Tenant ID is not available in the environment variables.")
 
