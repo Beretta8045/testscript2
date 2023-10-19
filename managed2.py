@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.authorization.models import RoleDefinition  
   
 # Set your Azure subscription ID  
-subscription_id = '4a11049c-f1ef-4b33-8fdc-000845f3b37c  
+subscription_id = "4a11049c-f1ef-4b33-8fdc-000845f3b37c"  
   
 # Set your Azure resource group name and location  
 resource_group_name = 'Marketplaceoffer'  
