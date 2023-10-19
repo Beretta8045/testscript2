@@ -39,7 +39,7 @@ identity = resource_client.managed_identities.create_or_update(resource_group_na
   
 # Assign permissions to Key Vault  
 keyvault_client.role_assignments.create(  
-    scope = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{managed_identity_name}"  
+scope = "/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{}".format(subscription_id, resource_group_name, managed_identity_name)  
 keyvault_client.role_assignments.create(  
     scope=scope,  
     role_definition_id="/subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",  
