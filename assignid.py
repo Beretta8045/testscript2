@@ -4,10 +4,10 @@ from azure.mgmt.compute.models import VirtualMachine, VirtualMachineIdentity
 from azure.mgmt.resource import ResourceManagementClient
 
 # Define your Azure resource and VM specifics
-subscription_id = 'YOUR_SUBSCRIPTION_ID'
-resource_group_name = 'YOUR_RESOURCE_GROUP'
-vm_name = 'YOUR_VM_NAME'
-identity_name = 'YOUR_MANAGED_IDENTITY_NAME'
+subscription_id = '4a11049c-f1ef-4b33-8fdc-000845f3b37c'
+resource_group_name = 'Marketplaceoffer'
+vm_name = 'gtgapp'
+identity_name = 'gtgidentity'
 
 # Create Azure clients
 credential = DefaultAzureCredential()
